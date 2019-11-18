@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 $koneksi= new mysqli("localhost", "root","","jualoptik");
 ?>
@@ -8,7 +8,7 @@ $koneksi= new mysqli("localhost", "root","","jualoptik");
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Bootstrap Admin Template : Binary Admin</title>
-  <!-- BOOTSTRAP STYLES-->
+	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
