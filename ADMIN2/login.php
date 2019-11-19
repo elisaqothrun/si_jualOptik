@@ -1,13 +1,13 @@
-﻿<?php
+<?php
 session_start();
-$koneksi= new mysqli("localhost", "root","","jualoptik");
+$koneksi = new mysqli("localhost", "root","","jualoptik");
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>Free Bootstrap Admin Template : Optik Surya</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -23,7 +23,7 @@ $koneksi= new mysqli("localhost", "root","","jualoptik");
         <div class="row text-center ">
             <div class="col-md-12">
                 <br /><br />
-                <h2> Binary Admin : Login</h2>
+                <h2> Optik Surya Admin : Login</h2>
                
                 <h5>( Login yourself to get access )</h5>
                  <br />
@@ -53,13 +53,13 @@ $koneksi= new mysqli("localhost", "root","","jualoptik");
                                                 <input type="checkbox" /> Remember me
                                             </label>
                                             <span class="pull-right">
-                                                   <a href="#" >Forget password ? </a> 
+                                                   <a href="#" >Lupa password ? </a> 
                                             </span>
                                         </div>
                                      
                                      <button class="btn btn-primary" name=login>LOG IN</button> 
                                     <hr />
-                                    Not register ? <a href="registeration.html" >click here </a> 
+                                    Belum Punya Akun ? <a href="registeration.html" >click Daftar Sekarang </a> 
                                     </form>
                                      <?php
                                        if (isset ($_POST['login']))
