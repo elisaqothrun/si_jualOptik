@@ -1,12 +1,21 @@
 ﻿<?php 
-$koneksi= new mysqli("localhost", "root","","jualoptikbaru");
+session_start();
+$koneksi = new mysqli("localhost", "root","","jualoptik");
+
+if (!isset($_SESSION['admin']))
+{
+    echo "<script>alert('Anda harus login');</script>";
+    echo "<script>location='login.php';</script>";
+    header('location:login.php');
+    exit();
+}
  ?>
  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>Free Bootstrap Admin Template : Optik Surya</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -28,7 +37,7 @@ $koneksi= new mysqli("localhost", "root","","jualoptikbaru");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">ADMIN</a> 
+                <a class="navbar-brand" href="index.php">ADMIN</a> 
             </div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
@@ -45,7 +54,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 				
 					
                     <li>
-                     <li><a href="index.php?halaman=home"><i class="fa fa-book"></i> Home</a></li>
+                    <li><a href="index.php?halaman=home"><i class="fa fa-book"></i> Home</a></li>
                     <li><a href="index.php?halaman=pesanansaya"><i class="fa fa-book"></i> Pesanan Saya</a></li>
                     <li><a href="index.php?halaman=produk"><i class="fa fa-shopping-bag"></i>Produk</a></li>
                     <li><a href="index.php?halaman=tambahproduk"><i class="fa fa-shopping-bag"></i> Tambah Produk</a></li>

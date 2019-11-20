@@ -1,5 +1,5 @@
 <h2> Data Produk </h2>
-<p><a href="index.php?halaman=tambahbarang" class="btn btn-primary">Tambah Barang Baru</a>
+<p><a href="index.php?halaman=tambahproduk" class="btn btn-primary">Tambah Barang Baru</a>
 </p>
 
 <table class= "table table-bordered">
@@ -28,7 +28,7 @@
 		<td><?php echo $pecah['HARGA_BARANG'];?></td>
 		<td><?php echo $pecah['STOK_BARANG'];?></td>
 		<td><?php echo $pecah['TGL_KADALUARSA'];?></td>
-		<td><img src="softlens.jpg/foto_produk/<?php echo $pecah['GAMBAR_BARANG']; ?>" width="100"></td>
+		<td><img src="../foto_produk/<?php echo $pecah['GAMBAR_BARANG']; ?>" width="100"></td>
 		
 		<td>
 		<a href="index.php?halaman=hapusbarang&id=<?php echo $pecah['ID_BARANG'];?> " class="btn-danger btn">hapus</a>
