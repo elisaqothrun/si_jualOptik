@@ -4,30 +4,23 @@ session_start();
 echo "<pre>";
 print_r($_SESSION['keranjang']);
 echo "</pre>";
+include 'koneksi.php';
 
-$koneksi=new mysqli("localhost", "root", "", "jualoptik");
+if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
+{
+	echo "<script> alert('silahkan belanja dahulu');</script>";
+	echo "<script> location='index.php';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>keranjang</title>
-	<link rel="stylesheet" href ="ADMIN2/assets/css/bootstrap.css">
+	<link rel="stylesheet" href ="assets/css/bootstrap.css">
 </head>
 <body>
-<!-- Navbar -->
-	<nav class="navbar navbar-default">
-		<div class="container">
 
-			<ul class="nav navbar-nav">
-				
-					<li><a href="index.php">Optik Surya</li>
-					<li><a href="kategori.php">Kategori</li>
-					<li><a href="keranjang.php">Keranjang</li>
-				  	<li><a href="daftar.php">Daftar</li>
-					<li><a href="login.php">Login</li>
-			</ul>
-		</div>
-	</nav>
+<?php include "menu.php"; ?>
 
 	<!--Konten-->
 	<section class="konten">
@@ -62,7 +55,7 @@ $koneksi=new mysqli("localhost", "root", "", "jualoptik");
 					<td><?php echo $jumlah ;?></td>
 					<td>Rp. <?php echo number_format($subtotal);?></td>
 					<td>
-						<a href="index.php?halaman=detail&id=<?php echo $pecah['ID_BARANG']; ?> "class="btn btn-danger">hapus</a>
+						<a href="hapuskeranjang.php?id=<?php echo $ID_BARANG?>" class="btn btn-danger btn-xs">hapus</a>
 					</td>
 				</tr>
 				<?php $nomor++ ?>
@@ -71,7 +64,7 @@ $koneksi=new mysqli("localhost", "root", "", "jualoptik");
 				</tbody>
 				
 			</table>
-			<a href="index.php" class="btn btn-warning">Bayar</a>
+			<a href="index.php" class="btn btn-warning">Tambah Belanja</a>
 			<a href="checkout.php" class="btn btn-primary">Checkout</a>
 			</div>
 			</section>
