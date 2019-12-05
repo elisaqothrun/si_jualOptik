@@ -1,5 +1,6 @@
 <h2>Ubah Produk</h2>
 <?php
+$koneksi= new mysqli("localhost", "root","","jualoptik");
 $ambil = $koneksi->query("SELECT * FROM barang WHERE ID_BARANG='$_GET[id]'");
 $pecah = $ambil->fetch_assoc();
 echo "<strong>ID Barang</strong><br>";
@@ -49,7 +50,6 @@ if (isset($_POST['save']))
 	if (!empty($lokasifoto))
 	{
 		move_uploaded_file($lokasifoto, "../foto_produk/$foto");
-
 		$koneksi->query("UPDATE barang SET NAMA_BARANG='$_POST[nama_barang]', HARGA_BARANG='$_POST[harga]', STOK_BARANG='$_POST[stok]', TGL_KADALUARSA='$_POST[tanggal_kadaluarsa]', GAMBAR_BARANG='$namafoto', DESKRIPSI_BARANG='$_POST[deskripsi]' WHERE ID_BARANG='$_GET[id]'");
 	}else
 	{
@@ -61,5 +61,5 @@ if (isset($_POST['save']))
 }
 ?>
 
-	
+
 </form>
