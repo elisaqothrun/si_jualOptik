@@ -8,9 +8,9 @@ $ambil= mysqli_query ($koneksi, "SELECT * FROM barang WHERE NAMA_BARANG LIKE '%$
 {
 $semuadata[]= $pecah;
 }
-echo "<pre>";
-print_r($semuadata);
-echo "</pre>";
+// echo "<pre>";
+// print_r($semuadata);
+// echo "</pre>";
 ?>
  <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@ echo "</pre>";
 <div class="container">
 	<h3>Hasil Pencarian</h3>
 	<?php if (empty($semuadata)): ?>
-		<div class="alert alert-danger"> Barang <?php echo $keyword ?></div>
+		<div class="alert alert-danger"> Produk <?php echo $keyword ?> Tidak Ditemukan</div>
 	<?php endif ?>
 	
 	<div class="row">

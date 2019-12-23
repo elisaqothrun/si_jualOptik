@@ -1,9 +1,9 @@
 <?php 
 session_start();
 
-echo "<pre>";
-print_r($_SESSION['keranjang']);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_SESSION['keranjang']);
+// echo "</pre>";
 include 'koneksi.php';
 
 if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))

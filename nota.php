@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'koneksi.php';
 include "menu.php";
 ?>
@@ -6,28 +7,64 @@ include "menu.php";
 <html>
 <head>
 	<title> Nota Pembelian</title>
-	<link rel="stylesheet" href="ADMIN2 /assets/css/bootstrap.css">
+	<link rel="stylesheet" href="ADMIN2/assets/css/bootstrap.css">
 </head>
 <body>
 <section class="konten">
 		<div class="container">
 		<?php 
-			echo $idn = $_GET['idn'];
+			$idn = $_GET['idn'];
 			$ambil = $koneksi->query ("SELECT * FROM pemesanan JOIN pembeli ON pemesanan.NIK=pembeli.NIK WHERE pemesanan.ID_PEMESANAN='$idn'");
 			$detail = $ambil->fetch_assoc();
 			?>
-			<p>ID Pemesanan :</p>
+			<!-- Jika pelanggan yang beli tidak sama dengan pelanggan yang login, maka dialihkan ke riwayat.php karena tidak berhak melihat nota pelanggan yang sudah login -->
+			<!-- <?php 
+			$idpelangganbeli=$detail['$idn'];
+			//mendapatkan id pelanggan yang login
+			$idpelangganlogin= $_SESSION["pembeli"]["NIK"];
+			if ($idpelangganbeli!==$idpelangganlogin) {
+				echo "<script>alert('jangan nakal');</script>";
+				echo "<script>location='riwayat.php';</script>";
+				exit();
+			}
+			?> -->
+			<!--<p>ID Pemesanan :</p>-->
 			<pre><?php print_r($detail['ID_PEMESANAN']); ?></pre>
-			<?php echo "Nama pembeli:<br><strong>" . $detail ['NAMA_PEMBELI'] . "</strong>";?> <br>
+			<!--<?php //echo "Nama pembeli:<br><strong>" . $detail ['NAMA_PEMBELI'] . "</strong>";?> <br>
 			<p>
-				<?php echo "Nomor telepon:<br><strong>" . $detail ['NO_TELEPON'] . "</strong>"; ?> <br>
-				<?php echo "Gambar bukti pembayaran:<br>" . $detail ['GAMBAR_BUKTIPEMBAYARAN']; ?> 
+				<?php //echo "Nomor telepon:<br><strong>" . $detail ['NO_TELEPON'] . "</strong>"; ?> <br>
+				<?php //echo "Gambar bukti pembayaran:<br>" . $detail ['GAMBAR_BUKTIPEMBAYARAN']; ?> 
 			</p> 
 
 			<p>
-				<?php echo "Tanggal pemesanan:<br><strong>" .$detail ['TGL_PEMESANAN'] . "</strong>"; ?> <br>
-				<?php echo "Total harga:<br><strong>" . $detail ['TOTAL_HARGA'] . "</strong>"; ?> 
-			</p> 
+				<?php //echo "Tanggal pemesanan:<br><strong>" .$detail ['TGL_PEMESANAN'] . "</strong>"; ?> <br>
+				<?php //echo "Total harga:<br><strong>" . $detail ['TOTAL_HARGA'] . "</strong>"; ?> 
+			</p>-->
+			<div class="row">
+				<div class="col-md-4">
+				<h3>Pembelian</h3>
+				<strong>No.Pemesanan : <?php echo $detail['ID_PEMESANAN']; ?></strong><br>
+				Tanggal pemesanan: <?php echo $detail ['TGL_PEMESANAN']; ?> <br>
+				Total harga: Rp. <?php echo number_format($detail ['TOTAL_HARGA']); ?>
+				</div>
+				<div class="col-md-4">
+				<h3>Pelanggan</h3>
+				<strong><?php echo $detail ['NAMA_PEMBELI'];?></strong><br> </p>
+					<p>
+					<?php echo $detail ['NO_TELEPON'] ; ?> <br>
+					<?php echo $detail ['GAMBAR_BUKTIPEMBAYARAN']; ?></p> 
+				</div>
+				<div class="col-md-4">
+				<h3>Pengiriman</h3>
+				<?php
+				while ($pecah =$ambil-> fetch_assoc()){ 
+				$ambil = $koneksi-> query ("SELECT * FROM ongkir WHERE ID_ONGKIR= '$pecah[ID_ONGKIR]'");?>
+				$ongkir = $ongkir-> fetch_assoc();
+				<strong><?php echo $ongkir['KOTA'] ?></strong><br>
+				Ongkos Kirim: Rp. <?php echo number_format($ongkir['TARIF']); ?>
+				<?php } ?>
+				</div>	
+			</div>
 			<table class= "table table-bordered">
 				<thead>
 					<tr>
@@ -43,14 +80,17 @@ include "menu.php";
 				<?php $nomor=1; ?>
 				<?php $ambil = $koneksi-> query ("SELECT * FROM detail_pemesanan WHERE ID_PEMESANAN= '$idn'"); ?>
 				<?php 
-				while ($pecah =$ambil-> fetch_assoc()){ ?>
+				while ($pecah =$ambil-> fetch_assoc()){ 
+					//$barang = $koneksi-> query ("SELECT * FROM barang WHERE ID_BARANG= '$pecah[ID_BARANG]'");
+					//$barang = $barang-> fetch_assoc();
+					?>
 				<tr>
 					<td><?php echo $nomor;?></td>
-					<td><?php echo $pecah['NAMA_BARANG'];?></td>
-					<td><?php echo $pecah['HARGA_BARANG'];?></td>
+					<td><?php echo $pecah['NAMABARANG'];?></td>
+					<td>Rp. <?php echo number_format($pecah['HARGABARANG']) ;?></td>
 					<td><?php echo $pecah['JUMLAH_BARANG'];?></td>
-					<td><?php echo $pecah['SUB_TOTAL'];?></td>
-					
+					<!--<td><?php //echo $pecah['TOTAL_HARGA'];?></td>-->
+					<td>Rp. <?php echo number_format($subtotal = $pecah["HARGABARANG"] * $pecah["JUMLAH_BARANG"]);?></td>
 				</tr>
 				<?php $nomor++ ?>
 				<?php } ?>
@@ -61,7 +101,7 @@ include "menu.php";
 				<div class="col-md-7">
 					<div class="alert alert-info">
 						<p>
-							Silahkan melakukan pembayaran Rp.<?php echo number_format($detail['total_pembelian']);?> ke <strong> BANK Mandiri 138-2939993-3322 AN. Fila</strong>
+							Silahkan melakukan pembayaran Rp.<?php echo number_format($detail['TOTAL_HARGA']);?> ke <strong> BANK Mandiri 138-2939993-3322 AN. Fila</strong>
 						</p>
 					</div>
 				</div>
