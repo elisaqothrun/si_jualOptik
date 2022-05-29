@@ -10,7 +10,7 @@
 			<th>Kategori</th>
 			<th>Nama barang</th>
 			<th>harga</th>
-			<th>stok</th>
+			<th>stok produk</th>
 			<th>tanggal kadaluarsa</th>
 			<th>foto produk</th>
 			<th>aksi</th>
