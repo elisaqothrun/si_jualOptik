@@ -12,7 +12,7 @@
 			<th>harga</th>
 			<th>stok</th>
 			<th>tanggal kadaluarsa</th>
-			<th>foto</th>
+			<th>foto produk</th>
 			<th>aksi</th>
 		</tr>
 	</thead>
