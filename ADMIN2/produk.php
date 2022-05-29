@@ -1,4 +1,4 @@
-<h2> Data Produk </h2>
+<h2> Daftar Produk </h2>
 <p><a href="index.php?halaman=tambahproduk" class="btn btn-primary">Tambah Barang Baru</a>
 </p>
 
@@ -10,9 +10,9 @@
 			<th>Kategori</th>
 			<th>Nama barang</th>
 			<th>harga</th>
-			<th>stok</th>
+			<th>stok produk</th>
 			<th>tanggal kadaluarsa</th>
-			<th>foto</th>
+			<th>foto produk</th>
 			<th>aksi</th>
 		</tr>
 	</thead>
