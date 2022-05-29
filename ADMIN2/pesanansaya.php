@@ -1,4 +1,4 @@
-<h2>pesanan saya</h2>
+<h2>Pesanan masuk</h2>
 
 <table class="table table-bodered">
 		<thead>
